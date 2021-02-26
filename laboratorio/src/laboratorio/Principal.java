@@ -13,7 +13,7 @@ public class Principal {
 			System.out.println("digite um valor para depósito");
 			while (!sc.hasNextInt()) {
 				System.out.println("Valor inválido! Tente novamente...");
-				sc.next(); // this is important!
+				sc.next();
 			}
 			number = sc.nextInt();
 		} while (number <= 0);
