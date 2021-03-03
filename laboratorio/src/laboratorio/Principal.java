@@ -22,7 +22,7 @@ public class Principal {
 		if (conta.getSaldo() > 10) {
 			System.out.println("Vc depositou mais de 10 reais :D");
 		} else {
-			System.out.println("Vc depositou menos de 10 reais :(");
+			System.out.println("Vc depositou menos de 10 reaissss :(");
 		}
 	}
 }
