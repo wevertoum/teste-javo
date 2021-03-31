@@ -30,7 +30,7 @@ public class Cadastro {
 	}
 
 	public void instanceClientes() {
-		System.out.println("----------- INSTACE CLIENTES ----------- \n");
+		System.out.println("----------- INSTANCE CLIENTES ----------- \n");
 		clientes = new ArrayList<Cliente>();
 
 		Cliente cliente = new Cliente("Marcos", "(62) 99334-4334", 20, "01102203304", Status.ATIVO);
