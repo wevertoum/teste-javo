@@ -1,3 +1,3 @@
-module lab_semana4 {
+module semana3 {
 	requires java.desktop;
 }

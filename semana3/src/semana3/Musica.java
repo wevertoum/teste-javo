@@ -34,12 +34,4 @@ public class Musica {
 		this.tipo = tipo;
 	}
 
-	public Compositor getCompositor() {
-		return compositor;
-	}
-
-	public void setCompositor(Compositor compositor) {
-		this.compositor = compositor;
-	}
-
 }

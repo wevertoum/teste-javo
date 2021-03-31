@@ -1,10 +1,8 @@
 package semana3;
 
-import java.awt.event.ActionEvent;
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.*;
 
 public class AssociacaoPrincipal {
 	private List<Musica> musicas;
@@ -18,10 +16,10 @@ public class AssociacaoPrincipal {
 	}
 
 	public void showStartMenu() {
-		musicas = new ArrayList<Musica>();
-		alunos = new ArrayList<Aluno>();
-		clientes = new ArrayList<Cliente>();
-		empregados = new ArrayList<Empregado>();
+		musicas = new ArrayList<>();
+		alunos = new ArrayList<>();
+		clientes = new ArrayList<>();
+		empregados = new ArrayList<>();
 
 		JFrame StartMenu = new JFrame();
 		ImageIcon iconBye = new ImageIcon(new ImageIcon("bye.png").getImage().getScaledInstance(70, 70, 0));
@@ -37,36 +35,18 @@ public class AssociacaoPrincipal {
 		StartMenu.getContentPane().add(InstanciaEmpregado);
 		StartMenu.getContentPane().add(Sair);
 
-		InstanciaMusica.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				instanciarMusicas();
-			}
-		});
+		InstanciaMusica.addActionListener(e -> instanciarMusicas());
 
-		InstanciaAlunos.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				instanciarAlunos();
-			}
-		});
+		InstanciaAlunos.addActionListener(e -> instanciarAlunos());
 
-		InstanciaClientes.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				instanciarClientes();
-			}
-		});
+		InstanciaClientes.addActionListener(e -> instanciarClientes());
 
-		InstanciaEmpregado.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				instanciarEmpregados();
-			}
-		});
+		InstanciaEmpregado.addActionListener(e -> instanciarEmpregados());
 
-		Sair.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "vc quis: " + e.getActionCommand(), "Foi um prazer!",
-						JOptionPane.INFORMATION_MESSAGE, iconBye);
-				System.exit(0);
-			}
+		Sair.addActionListener(e -> {
+			JOptionPane.showMessageDialog(null, "vc quis: " + e.getActionCommand(), "Foi um prazer!",
+					JOptionPane.INFORMATION_MESSAGE, iconBye);
+			System.exit(0);
 		});
 
 		StartMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -88,9 +68,8 @@ public class AssociacaoPrincipal {
 //	--------------------------------
 
 	private void instanciarMusicas() {
-		boolean cadastrando = true;
 
-		while (cadastrando) {
+		while (true) {
 			Musica mus = new Musica();
 
 			JTextField nome = new JTextField();
@@ -113,8 +92,7 @@ public class AssociacaoPrincipal {
 			}
 			mus.setTipo(tipo.getText());
 
-			Compositor comp = new Compositor(nomeComposi.getText(), naciComposi.getText());
-			mus.compositor = comp;
+			mus.compositor = new Compositor(nomeComposi.getText(), naciComposi.getText());
 
 			if (result == JOptionPane.YES_OPTION) {
 				musicas.add(mus);
@@ -126,25 +104,22 @@ public class AssociacaoPrincipal {
 
 	private void listarMusicas() {
 
-		String content = "";
+		StringBuilder content = new StringBuilder();
 
 		if (musicas.size() == 0) {
-			content = ("\nNão existem musicas cadastradas!!!\n");
+			content = new StringBuilder(("\nNão existem musicas cadastradas!!!\n"));
 		} else {
 			for (int i = 0; i < musicas.size(); i++) {
 				Musica mus = musicas.get(i);
-				content = content + ("\n\nMusica numero: " + (i + 1) + "\n" + "Nome: " + mus.getNome() + "\n" + "Ano: "
-						+ mus.getAno() + "\n" + "Tipo: " + mus.getTipo() + "\n" + "Nome compositor: "
-						+ mus.compositor.getNome() + "\n" + "Nac. do compositor: " + mus.compositor.getNacionalidade());
+				content.append("\n\nMusica numero: ").append(i + 1).append("\n").append("Nome: ").append(mus.getNome()).append("\n").append("Ano: ").append(mus.getAno()).append("\n").append("Tipo: ").append(mus.getTipo()).append("\n").append("Nome compositor: ").append(mus.compositor.getNome()).append("\n").append("Nac. do compositor: ").append(mus.compositor.getNacionalidade());
 
 			}
 		}
 
-		int result = JOptionPane.showConfirmDialog(null, content, "Lista musicas cadastradas", JOptionPane.OK_OPTION);
+		int result = JOptionPane.showConfirmDialog(null, content.toString(), "Lista musicas cadastradas", JOptionPane.YES_NO_OPTION);
 		if (result == JOptionPane.OK_OPTION) {
 
 			if (musicas.size() == 0) {
-				return;
 			} else {
 				System.exit(0);
 			}
@@ -157,9 +132,8 @@ public class AssociacaoPrincipal {
 //	--------------------------------
 
 	private void instanciarAlunos() {
-		boolean cadastrando = true;
 
-		while (cadastrando) {
+		while (true) {
 			Aluno aluno = new Aluno();
 
 			JTextField nome = new JTextField();
@@ -188,8 +162,7 @@ public class AssociacaoPrincipal {
 				aluno.setAno(Integer.parseInt(anoInteger));
 			}
 			Departamento depto = new Departamento(dptoNome.getText(), dptoSigla.getText());
-			Curso curso = new Curso(cursoNome.getText(), cursoSigla.getText(), depto);
-			aluno.curso = curso;
+			aluno.curso = new Curso(cursoNome.getText(), cursoSigla.getText(), depto);
 
 			if (result == JOptionPane.YES_OPTION) {
 				alunos.add(aluno);
@@ -201,27 +174,22 @@ public class AssociacaoPrincipal {
 
 	private void listarAlunos() {
 
-		String content = "";
+		StringBuilder content = new StringBuilder();
 
 		if (alunos.size() == 0) {
-			content = ("\nNão existem alunos cadastradas!!!\n");
+			content = new StringBuilder(("\nNão existem alunos cadastradas!!!\n"));
 		} else {
 			for (int i = 0; i < alunos.size(); i++) {
 				Aluno aluno = alunos.get(i);
-				content = content + ("\n\nAluno numero: " + (i + 1) + "\n" + "Nome: " + aluno.getNome() + "\n"
-						+ "Matricula: " + aluno.getMatricula() + "\n" + "Ano: " + aluno.getAno() + "\n" + "Nome curso: "
-						+ aluno.curso.getNome() + "\n" + "Sigla curso: " + aluno.curso.getSigla() + "\n" + "Nome dpto: "
-						+ aluno.curso.departamento.getNome() + "\n" + "Sigla dpto"
-						+ aluno.curso.departamento.getSigla());
+				content.append("\n\nAluno numero: ").append(i + 1).append("\n").append("Nome: ").append(aluno.getNome()).append("\n").append("Matricula: ").append(aluno.getMatricula()).append("\n").append("Ano: ").append(aluno.getAno()).append("\n").append("Nome curso: ").append(aluno.curso.getNome()).append("\n").append("Sigla curso: ").append(aluno.curso.getSigla()).append("\n").append("Nome dpto: ").append(aluno.curso.departamento.getNome()).append("\n").append("Sigla dpto").append(aluno.curso.departamento.getSigla());
 
 			}
 		}
 
-		int result = JOptionPane.showConfirmDialog(null, content, "Lista alunos cadastrados", JOptionPane.OK_OPTION);
+		int result = JOptionPane.showConfirmDialog(null, content.toString(), "Lista alunos cadastrados", JOptionPane.YES_NO_OPTION);
 		if (result == JOptionPane.OK_OPTION) {
 
 			if (alunos.size() == 0) {
-				return;
 			} else {
 				System.exit(0);
 			}
@@ -234,9 +202,8 @@ public class AssociacaoPrincipal {
 //	--------------------------------
 
 	private void instanciarClientes() {
-		boolean cadastrando = true;
 
-		while (cadastrando) {
+		while (true) {
 			Cliente cliente = new Cliente();
 			Endereco endereco = new Endereco();
 
@@ -283,27 +250,22 @@ public class AssociacaoPrincipal {
 
 	private void listarClientes() {
 
-		String content = "";
+		StringBuilder content = new StringBuilder();
 
 		if (clientes.size() == 0) {
-			content = ("\nNão existem clientes cadastradas!!!\n");
+			content = new StringBuilder(("\nNão existem clientes cadastradas!!!\n"));
 		} else {
 			for (int i = 0; i < clientes.size(); i++) {
 				Cliente cliente = clientes.get(i);
-				content = content + ("\n\nCliente numero: " + (i + 1) + "\n" + "Nome: " + cliente.getNome() + "\n"
-						+ "CPF: " + cliente.getCpf() + "\n" + "Rua: " + cliente.endereco.getRua() + "\n" + "Numero: "
-						+ cliente.endereco.getNumero() + "\n" + "Bairro: " + cliente.endereco.getBairro() + "\n"
-						+ "Complemento: " + cliente.endereco.getComplemento() + "\n" + "Cidade: "
-						+ cliente.endereco.getCidade() + "\n" + "Estado: " + cliente.endereco.getEstado());
+				content.append("\n\nCliente numero: ").append(i + 1).append("\n").append("Nome: ").append(cliente.getNome()).append("\n").append("CPF: ").append(cliente.getCpf()).append("\n").append("Rua: ").append(cliente.endereco.getRua()).append("\n").append("Numero: ").append(cliente.endereco.getNumero()).append("\n").append("Bairro: ").append(cliente.endereco.getBairro()).append("\n").append("Complemento: ").append(cliente.endereco.getComplemento()).append("\n").append("Cidade: ").append(cliente.endereco.getCidade()).append("\n").append("Estado: ").append(cliente.endereco.getEstado());
 
 			}
 		}
 
-		int result = JOptionPane.showConfirmDialog(null, content, "Lista clientes cadastrados", JOptionPane.OK_OPTION);
+		int result = JOptionPane.showConfirmDialog(null, content.toString(), "Lista clientes cadastrados", JOptionPane.YES_NO_OPTION);
 		if (result == JOptionPane.OK_OPTION) {
 
 			if (clientes.size() == 0) {
-				return;
 			} else {
 				System.exit(0);
 			}
@@ -316,9 +278,8 @@ public class AssociacaoPrincipal {
 //	--------------------------------
 
 	private void instanciarEmpregados() {
-		boolean cadastrando = true;
 
-		while (cadastrando) {
+		while (true) {
 			Endereco endereco = new Endereco();
 			Empresa empresa = new Empresa();
 			Empregado empregado = new Empregado();
@@ -374,32 +335,23 @@ public class AssociacaoPrincipal {
 
 	private void listarEmpregados() {
 
-		String content = "";
+		StringBuilder content = new StringBuilder();
 
 		if (empregados.size() == 0) {
-			content = ("\nNão existem empregados cadastradas!!!\n");
+			content = new StringBuilder(("\nNão existem empregados cadastradas!!!\n"));
 		} else {
 			for (int i = 0; i < empregados.size(); i++) {
 				Empregado empregado = empregados.get(i);
-				content = content + ("\n\nEmpregado numero: " + (i + 1) + "\n" + "Nome: " + empregado.getNome() + "\n"
-						+ "Matricula: " + empregado.getMatricula() + "\n" + "Razao empresa: "
-						+ empregado.empresa.getRazao() + "\n" + "CNPJ: " + empregado.empresa.getCnpj() + "\n"
-						+ "Rua empresa: " + empregado.empresa.endereco.getRua() + "\n" + "Numero empresa: "
-						+ empregado.empresa.endereco.getNumero() + "\n" + "Bairro empresa: "
-						+ empregado.empresa.endereco.getBairro() + "\n" + "Complemento empresa: "
-						+ empregado.empresa.endereco.getComplemento() + "\n" + "Cidade empresa: "
-						+ empregado.empresa.endereco.getCidade() + "\n" + "Estado empresa: "
-						+ empregado.empresa.endereco.getEstado());
+				content.append("\n\nEmpregado numero: ").append(i + 1).append("\n").append("Nome: ").append(empregado.getNome()).append("\n").append("Matricula: ").append(empregado.getMatricula()).append("\n").append("Razao empresa: ").append(empregado.empresa.getRazao()).append("\n").append("CNPJ: ").append(empregado.empresa.getCnpj()).append("\n").append("Rua empresa: ").append(empregado.empresa.endereco.getRua()).append("\n").append("Numero empresa: ").append(empregado.empresa.endereco.getNumero()).append("\n").append("Bairro empresa: ").append(empregado.empresa.endereco.getBairro()).append("\n").append("Complemento empresa: ").append(empregado.empresa.endereco.getComplemento()).append("\n").append("Cidade empresa: ").append(empregado.empresa.endereco.getCidade()).append("\n").append("Estado empresa: ").append(empregado.empresa.endereco.getEstado());
 
 			}
 		}
 
-		int result = JOptionPane.showConfirmDialog(null, content, "Lista empregados cadastrados",
-				JOptionPane.OK_OPTION);
+		int result = JOptionPane.showConfirmDialog(null, content.toString(), "Lista empregados cadastrados",
+				JOptionPane.YES_NO_OPTION);
 		if (result == JOptionPane.OK_OPTION) {
 
 			if (empregados.size() == 0) {
-				return;
 			} else {
 				System.exit(0);
 			}

@@ -24,12 +24,4 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
 }
