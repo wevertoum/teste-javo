@@ -13,6 +13,11 @@ public class Pessoa {
 		this.telefone = telefone;
 	}
 
+	public String toString(String nome, String telefone) {
+		return "Nome: " + nome + " Telefone: " + telefone;
+
+	}
+
 	public String getNome() {
 		return nome;
 	}
