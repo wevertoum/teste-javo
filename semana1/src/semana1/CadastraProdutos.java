@@ -1,12 +1,8 @@
 package semana1;
 
-import java.util.List;
-import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-
-import javax.swing.JOptionPane;
-
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CadastraProdutos {
 
@@ -19,7 +15,7 @@ public class CadastraProdutos {
 
 	public void showStartMenu() {
 
-		dados = new ArrayList<Dados>();
+		dados = new ArrayList<>();
 
 		JFrame StartMenu = new JFrame();
 		ImageIcon iconBye = new ImageIcon(new ImageIcon("bye.png").getImage().getScaledInstance(70, 70, 0));
@@ -31,24 +27,13 @@ public class CadastraProdutos {
 		StartMenu.getContentPane().add(ListarCadastros);
 		StartMenu.getContentPane().add(Sair);
 
-		Cadastrar.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cadastrar();
-			}
-		});
+		Cadastrar.addActionListener(e -> cadastrar());
 
-		ListarCadastros.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				listarCadastros();
-			}
-		});
-		Sair.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "vc quis: " + e.getActionCommand(), "Foi um prazer!",
-						JOptionPane.INFORMATION_MESSAGE, iconBye);
-				System.exit(0);
-			}
+		ListarCadastros.addActionListener(e -> listarCadastros());
+		Sair.addActionListener(e -> {
+			JOptionPane.showMessageDialog(null, "vc quis: " + e.getActionCommand(), "Foi um prazer!",
+					JOptionPane.INFORMATION_MESSAGE, iconBye);
+			System.exit(0);
 		});
 
 		StartMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,9 +49,8 @@ public class CadastraProdutos {
 	}
 
 	private void cadastrar() {
-		boolean cadastrando = true;
 
-		while (cadastrando) {
+		while (true) {
 			Dados d = new Dados();
 
 			JTextField nome = new JTextField();
@@ -95,25 +79,19 @@ public class CadastraProdutos {
 
 	private void listarCadastros() {
 
-		String content = "";
+		StringBuilder content = new StringBuilder();
 
 		if (dados.size() == 0) {
-			content = ("\nNão existem cadastros!!!\n");
+			content = new StringBuilder(("\nNão existem cadastros!!!\n"));
 		} else {
 			for (int i = 0; i < dados.size(); i++) {
 				Dados d = dados.get(i);
-				content = content + (" Cadastro número: " + i + "\tNome: " + d.getNome() + "\n" + "\tQuantidade: "
-						+ d.getQuantidade() + "\n" + "\tTipo: " + d.getTipo() + "\n" + "\tValor: " + d.getValor()
-						+ "\n");
+				content.append(" Cadastro número: ").append(i).append("\tNome: ").append(d.getNome()).append("\n").append("\tQuantidade: ").append(d.getQuantidade()).append("\n").append("\tTipo: ").append(d.getTipo()).append("\n").append("\tValor: ").append(d.getValor()).append("\n");
 
 			}
 		}
 
-		int result = JOptionPane.showConfirmDialog(null, content, "Lista itens cadastrados", JOptionPane.OK_OPTION);
-
-		if (result == JOptionPane.OK_OPTION) {
-			return;
-		}
+		JOptionPane.showConfirmDialog(null, content.toString(), "Lista itens cadastrados", JOptionPane.YES_NO_OPTION);
 
 	}
 

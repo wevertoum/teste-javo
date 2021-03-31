@@ -2,8 +2,6 @@ package semana1;
 
 public class Dados {
 
-	private int codigo;
-
 	private String nome;
 
 	private String quantidade;
@@ -14,14 +12,6 @@ public class Dados {
 
 	public Dados() {
 		
-	}
-
-	public int getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
 	}
 
 	public String getNome() {
