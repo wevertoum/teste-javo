@@ -16,14 +16,12 @@ public class Principal {
 	}
 
 	public void showInitialData() {
-		funcionarios = new ArrayList<Funcionario>();
+		funcionarios = new ArrayList<>();
 
 		Funcionario func = new Funcionario("Joao", "03183101203", 1);
 		Funcionario funcSalario = new Funcionario(5000);
-		funcSalario.salario = funcSalario.salario;
 
-		Endereco end = new Endereco("Rua das gracas", 1022);
-		func.Endereco = end;
+		func.Endereco = new Endereco("Rua das gracas", 1022);
 		System.out.println("<< DADOS INICIAIS >>" + "\n" + "nome: " + func.nome + "\n" + "cpf: " + func.cpf + "\n"
 				+ "matricula: " + func.matricula + "\n" + "rua: " + func.Endereco.rua + "\n" + "numero: "
 				+ func.Endereco.numero + "\n" + "salario alterado " + aumentaSalario(funcSalario.salario, 10));
@@ -32,9 +30,8 @@ public class Principal {
 	}
 
 	private void cadastraFuncionarios() {
-		boolean cadastrando = true;
 
-		while (cadastrando) {
+		while (true) {
 			Funcionario func = new Funcionario();
 
 			JTextField cpf = new JTextField();
@@ -78,8 +75,7 @@ public class Principal {
 				numInt = Integer.parseInt(numero.getText());
 			}
 
-			Endereco end = new Endereco(rua.getText(), numInt);
-			func.Endereco = end;
+			func.Endereco = new Endereco(rua.getText(), numInt);
 
 			if (result == JOptionPane.YES_OPTION) {
 				System.out.println(func);
@@ -92,26 +88,21 @@ public class Principal {
 
 	private void listarCadastros() {
 
-		String content = "";
+		StringBuilder content = new StringBuilder();
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
 
 		if (funcionarios.size() == 0) {
-			content = ("\nNão existem cadastros!!!\n");
+			content = new StringBuilder(("\nNão existem cadastros!!!\n"));
 		} else {
-			for (int i = 0; i < funcionarios.size(); i++) {
-				Funcionario func = funcionarios.get(i);
-				content = content + ("\n" + "CPF: " + func.getCpf() + "\n" + "Matricula: " + func.getMatricula() + "\n"
-						+ "Nome: " + func.getNome() + "\n" + "Cargo: " + func.getCargo() + "\n" + "Salario (+30%): R$"
-						+ df.format(aumentaSalario(func.getSalario(), 30)) + "\n" + "Departamento: "
-						+ func.getDepartamento() + "\n" + "Rua: " + func.Endereco.getRua() + "\n" + "Numero: "
-						+ func.Endereco.getNumero() + "\n" + "======================================");
+			for (Funcionario func : funcionarios) {
+				content.append("\n" + "CPF: ").append(func.getCpf()).append("\n").append("Matricula: ").append(func.getMatricula()).append("\n").append("Nome: ").append(func.getNome()).append("\n").append("Cargo: ").append(func.getCargo()).append("\n").append("Salario (+30%): R$").append(df.format(aumentaSalario(func.getSalario(), 30))).append("\n").append("Departamento: ").append(func.getDepartamento()).append("\n").append("Rua: ").append(func.Endereco.getRua()).append("\n").append("Numero: ").append(func.Endereco.getNumero()).append("\n").append("======================================");
 
 			}
 		}
 
-		int result = JOptionPane.showConfirmDialog(null, content, "Lista funcionarios cadastrados",
-				JOptionPane.OK_OPTION);
+		int result = JOptionPane.showConfirmDialog(null, content.toString(), "Lista funcionarios cadastrados",
+				JOptionPane.YES_NO_OPTION);
 
 		if (result == JOptionPane.OK_OPTION) {
 			System.exit(0);

@@ -71,12 +71,4 @@ public class Funcionario {
 		this.departamento = departamento;
 	}
 
-	public Endereco getEndereco() {
-		return Endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		Endereco = endereco;
-	}
-
 }
