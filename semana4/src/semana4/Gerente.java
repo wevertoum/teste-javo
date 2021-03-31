@@ -5,7 +5,7 @@ public class Gerente extends Funcionario {
 	private Double bonificacao;
 	private TipoPessoa status;
 
-	Gerente(String nome, String telefone, String matricula, String salario, Double bonificacao, TipoPessoa status) {
+	public Gerente(String nome, String telefone, String matricula, String salario, Double bonificacao, TipoPessoa status) {
 		super(nome, telefone, matricula, salario);
 		this.status = status;
 	}

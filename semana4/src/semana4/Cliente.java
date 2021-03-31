@@ -6,7 +6,7 @@ public class Cliente extends Pessoa {
 	private String cpf;
 	private Status status;
 
-	Cliente(String nome, String telefone, Integer idade, String cpf, Status status) {
+	public Cliente(String nome, String telefone, Integer idade, String cpf, Status status) {
 		super(nome, telefone);
 		this.idade = idade;
 		this.cpf = cpf;
