@@ -4,12 +4,7 @@ public class Funcionario extends Pessoa {
 
 	protected String matricula;
 	protected Double salario;
-	private Integer percent;
-
-	public Funcionario(String nome, String matricula) {
-		super(nome);
-		this.matricula = matricula;
-	}
+	private final Integer percent;
 
 	public Funcionario(String nome, String telefone, String matricula, Double salario, Integer percent) {
 		super(nome, telefone);
@@ -18,8 +13,8 @@ public class Funcionario extends Pessoa {
 		this.percent = percent;
 	}
 
-	public double aumentaSalario() {
-		return this.salario = salario + (salario * percent / 100);
+	public void aumentaSalario() {
+		this.salario = salario + (salario * percent / 100);
 	}
 
 	public double exibeGanhoAnual() {
@@ -27,19 +22,4 @@ public class Funcionario extends Pessoa {
 
 	}
 
-	public String getMatricula() {
-		return matricula;
-	}
-
-	public void setMatricula(String matricula) {
-		this.matricula = matricula;
-	}
-
-	public Double getSalario() {
-		return salario;
-	}
-
-	public void setSalario(Double salario) {
-		this.salario = salario;
-	}
 }
