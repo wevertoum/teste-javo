@@ -2,11 +2,11 @@ package semana4;
 
 public class Cliente extends Pessoa {
 
-	private Integer idade;
-	private String cpf;
+	private final Integer idade;
+	private final String cpf;
 	private Status status;
 
-	public Cliente(String nome, String telefone, Integer idade, String cpf, Status status) {
+	public Cliente(String nome, String telefone, Integer idade, String cpf) {
 		super(nome, telefone);
 		this.idade = idade;
 		this.cpf = cpf;
@@ -24,30 +24,6 @@ public class Cliente extends Pessoa {
 	public void exibeDados() {
 		System.out.println("Nome: " + this.nome + " Telefone: " + this.telefone + " Idade: " + this.idade + " CPF: "
 				+ this.cpf + " Status: " + this.status);
-	}
-
-	public Integer getIdade() {
-		return idade;
-	}
-
-	public void setIdade(Integer idade) {
-		this.idade = idade;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
 	}
 
 }
