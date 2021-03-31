@@ -1,5 +1,8 @@
 package semana4;
 
 public enum Status {
-	INATIVO, ATIVO
+	INATIVO("inativo"), ATIVO("ativo");
+
+	Status(String string) {
+	}
 }
