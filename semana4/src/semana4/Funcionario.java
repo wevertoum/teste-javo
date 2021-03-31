@@ -3,12 +3,18 @@ package semana4;
 public class Funcionario extends Pessoa {
 
 	private String matricula;
-	private String salario;
+	private Double salario;
 
-	public Funcionario(String nome, String telefone, String matricula, String salario) {
+	public Funcionario(String nome, String telefone, String matricula, Double salario) {
 		super(nome, telefone);
 		this.matricula = matricula;
 		this.salario = salario;
+	}
+	
+	public double aumentaSalario(double salario, int percent) {
+		double newSalario;
+		newSalario = salario + (salario * percent / 100);
+		return newSalario;
 	}
 
 	public String getMatricula() {
@@ -19,11 +25,11 @@ public class Funcionario extends Pessoa {
 		this.matricula = matricula;
 	}
 
-	public String getSalario() {
+	public Double getSalario() {
 		return salario;
 	}
 
-	public void setSalario(String salario) {
+	public void setSalario(Double salario) {
 		this.salario = salario;
 	}
 }
