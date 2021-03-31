@@ -3,9 +3,9 @@ package semana4;
 public class Gerente extends Funcionario {
 
 	private Double bonificacao;
-	private Status status;
+	private TipoPessoa status;
 
-	Gerente(String nome, String telefone, String matricula, String salario, Double bonificacao, Status status) {
+	Gerente(String nome, String telefone, String matricula, String salario, Double bonificacao, TipoPessoa status) {
 		super(nome, telefone, matricula, salario);
 		this.status = status;
 	}
@@ -18,11 +18,11 @@ public class Gerente extends Funcionario {
 		this.bonificacao = bonificacao;
 	}
 
-	public Status getStatus() {
+	public TipoPessoa getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(TipoPessoa status) {
 		this.status = status;
 	}
 
