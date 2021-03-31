@@ -4,6 +4,10 @@ public class Pessoa {
 	private String nome;
 	private String telefone;
 
+	public Pessoa(String nome) {
+		this.nome = nome;
+	}
+
 	public Pessoa(String nome, String telefone) {
 		this.nome = nome;
 		this.telefone = telefone;
