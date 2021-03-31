@@ -1,8 +1,8 @@
 package semana4;
 
 public class Pessoa {
-	private String nome;
-	private String telefone;
+	protected String nome;
+	protected String telefone;
 
 	public Pessoa(String nome) {
 		this.nome = nome;
@@ -11,11 +11,6 @@ public class Pessoa {
 	public Pessoa(String nome, String telefone) {
 		this.nome = nome;
 		this.telefone = telefone;
-	}
-
-	public String toString(String nome, String telefone) {
-		return "Nome: " + nome + " Telefone: " + telefone;
-
 	}
 
 	public String getNome() {

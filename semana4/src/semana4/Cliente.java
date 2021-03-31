@@ -21,8 +21,9 @@ public class Cliente extends Pessoa {
 		}
 	}
 
-	public String toString() {
-		return super.toString() + " Idade: " + this.idade + " CPF: " + this.cpf + " Status: " + this.status;
+	public void exibeDados() {
+		System.out.println("Nome: " + this.nome + " Telefone: " + this.telefone + " Idade: " + this.idade + " CPF: "
+				+ this.cpf + " Status: " + this.status);
 	}
 
 	public Integer getIdade() {
