@@ -1,7 +1,7 @@
 package com.cadastroCliente;
 
 public class Cliente {
-    private String nome;
+    private final String nome;
     private String telefone;
     private Integer idade;
 
@@ -15,10 +15,6 @@ public class Cliente {
 
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getTelefone() {
