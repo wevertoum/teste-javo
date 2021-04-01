@@ -9,15 +9,20 @@ public class Principal {
     }
 
     public void instanceAluno() {
-        System.out.println("\n ----------- Instanciando aluno ----------- \n");
+        System.out.println("\n----------- Instanciando aluno -----------\n");
+        // aluno original
         Aluno a = new Aluno("Maria antonieta");
-        a.matricular(1111,"Sistemas de informação", 2017 );
-        System.out.println("- dados originais -");
+        Curso cSi = new Curso("Sistemas de informação", "SI");
+        a.matricular(1111,cSi, 2017 );
+        System.out.println(">>> dados originais");
         System.out.println(a.exibeDados());
+
+        // alterando matricula com nova classe Curso
+        Curso cEs = new Curso("Engenharia de software", "ES");
         a.setMatricula(2222);
-        a.setCurso("Engenharia de software");
         a.setAno(2018);
-        System.out.println("- dados novos dados -");
+        a.setCurso(cEs);
+        System.out.println("\n>>> dados novos dados");
         System.out.println(a.exibeDados());
     }
 }
