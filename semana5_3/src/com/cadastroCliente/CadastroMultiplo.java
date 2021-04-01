@@ -11,7 +11,7 @@ public class CadastroMultiplo {
 
     public void instanceCliente() {
 
-        // defini um array menor e com scan pro codigo nao ficar muito estatico
+        // defini um array menor e com scan pro codigo nao ficar muito estatico.
         Cliente[] cliente = new Cliente[2];
         int x = 0;
         while (x < cliente.length) {
