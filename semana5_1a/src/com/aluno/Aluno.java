@@ -1,7 +1,7 @@
 package com.aluno;
 
 public class Aluno {
-    private String nome;
+    private final String nome;
     private int matricula;
     private int ano;
     private String curso;
@@ -16,15 +16,22 @@ public class Aluno {
         this.curso = curso;
     }
 
-    public String toString() {
-        return "Aluno : "+ nome + " - matricula : " + matricula + " - Curso : " + curso + " - " + ano;
+    public String exibeDados() {
+        return "Aluno: " + nome + " | Matricula: " + matricula + " | Curso : " + curso + " - " + ano;
+    }
+
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
     }
 
     public void setCurso(String curso) {
         this.curso = curso;
     }
-    public void setAno(int ano) {
-        this.ano = ano;
-    }
+
+
 }
 
