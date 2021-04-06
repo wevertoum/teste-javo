@@ -3,11 +3,10 @@ package com.tv;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.util.Scanner;
 
 public class ControleRemoto {
 
-    Televisao televisao = new Televisao(0, 0);
+    Televisao televisao = new Televisao();
 
     public static void main(String[] args) {
         new ControleRemoto();
@@ -55,15 +54,13 @@ public class ControleRemoto {
             AumentaVolume.addActionListener(e -> alterarVolume("aumenta"));
             DesceCanal.addActionListener(e -> alteraCanal("diminui"));
             SobeCanal.addActionListener(e -> alteraCanal("aumenta"));
-            Sair.addActionListener(e -> {
-                System.exit(0);
-            });
+            Sair.addActionListener(e -> System.exit(0));
         }
     }
 
 
     private void alterarVolume(String action) {
-        if (action == "aumenta") {
+        if (action.equals("aumenta")) {
             System.out.println(televisao.exibeDados());
             televisao.aumentaVolume();
         } else {
@@ -73,7 +70,7 @@ public class ControleRemoto {
     }
 
     private void alteraCanal(String action) {
-        if (action == "aumenta") {
+        if (action.equals("aumenta")) {
             System.out.println(televisao.exibeDados());
             televisao.sobeCanal();
         } else {
