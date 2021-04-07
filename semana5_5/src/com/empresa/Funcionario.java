@@ -6,15 +6,31 @@ public class Funcionario {
 	protected String cpf;
 	protected double salario;
 
-	public double bonificacao(){
-		double b = salario * 0.10;
-		return b;
+	Funcionario(String nome, String cpf){
+		this.nome = nome;
+		this.cpf = cpf;
 	}
-	public double getSalario() {
-		return salario;
-	}
-	public void setSalario(double salario) {
+
+	Funcionario(String nome, String cpf, double salario){
+		this.nome = nome;
+		this.cpf = cpf;
 		this.salario = salario;
 	}
 
+	public double bonificacao(){
+		return salario * 0.10;
+	}
+
+	public double exibeGanhoAnual() {
+		return (salario + bonificacao()) * 12;
+	}
+
+	public void exibeDados() {
+		System.out.println("Nome: " + this.nome + " CPF: "
+				+ this.cpf + " Ganhos totais: " + exibeGanhoAnual());
+	}
+
+	public void aumentaSalario(Integer percent) {
+		this.salario = (salario + bonificacao()) + (salario * percent / 100);
+	}
 }
