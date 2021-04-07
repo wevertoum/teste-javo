@@ -3,11 +3,11 @@ package com.questao2;
 import java.util.ArrayList;
 
 public class Conta {
-    private String nome;
-    private double saldo;
+    private final String nome;
+    private final double saldo;
     int mes;
-    private ArrayList<Deposito> depositos = new ArrayList<>();
-    private ArrayList<Saque> saques = new ArrayList<>();
+    private final ArrayList<Deposito> depositos = new ArrayList<>();
+    private final ArrayList<Saque> saques = new ArrayList<>();
 
     Conta (String nome, int mes, double saldo) {
         this.nome = nome;

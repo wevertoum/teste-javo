@@ -1,18 +1,12 @@
 package com.questao2;
 
 public class Deposito {
-    private String descricao;
-    private double valor;
-
-    Deposito(){}
+    private final String descricao;
+    private final double valor;
 
     Deposito (String descricao, double valor) {
         this.descricao = descricao;
         this.valor = valor;
-    }
-
-    public String getDescricao() {
-        return descricao;
     }
 
     public double getValor() {
