@@ -90,14 +90,18 @@ public class TestaConta {
             int numero = Integer.parseInt(JOptionPane.showInputDialog(null,"Numero da conta:"));
             Cliente cliente = new Cliente(nome, telefone);
 
-            if(tipo == 1){
-                contas.add(new ContaCorrente(numero, cliente));
-
-            } else if (tipo == 2){
-                contas.add(new ContaSalario(numero, cliente));
-            } else if(tipo == 3) {
-                contas.add(new ContaPoupanca(numero, cliente));
+            switch (tipo) {
+                case 1:
+                    contas.add(new ContaCorrente(numero, cliente));
+                    break;
+                case 2:
+                    contas.add(new ContaSalario(numero, cliente));
+                    break;
+                case 3:
+                    contas.add(new ContaPoupanca(numero, cliente));
+                    break;
             }
+
             tipo = Integer.parseInt(JOptionPane.showInputDialog(null,"1 - Corrente | 2 - Conta Salário | 3 - poupança"));
         }
         String outputStr = "";
