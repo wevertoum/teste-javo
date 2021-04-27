@@ -1,12 +1,17 @@
 package com.semana6;
 
+import javax.swing.*;
+import java.util.ArrayList;
+
 public class TestaConta {
 
     public static void main(String[] args) {
         TestaConta testaConta = new TestaConta();
-//      testaConta.testContasCasting();
-//      testaConta.testContasDeclaracaoOriginal();
+        testaConta.testContasCasting();
+        testaConta.testContasDeclaracaoOriginal();
         testaConta.testContasTransfere();
+        testaConta.testContasSalario();
+        testaConta.showCadastroPanel();
     }
 
 
@@ -58,5 +63,53 @@ public class TestaConta {
         contaCorrenteJoana.transferir(100.00, contaPoupancaMaria);
         System.out.println("conta corrente joana depois da receber de maria >>> " + contaPoupancaMaria.toString());
         System.out.println("conta corrente maria depois da enviar para joana >>> " + contaCorrenteJoana.toString());
+    }
+
+    public void testContasSalario() {
+        Cliente mario = new Cliente("Mario", "(62) 33333-3333");
+        Cliente julia = new Cliente("Julia", "(62) 22222-2222");
+
+        Conta contaSalarioMario = new ContaSalario(3333, mario);
+        contaSalarioMario.depositar(200);
+        Conta contaSalarioJulia = new ContaSalario(4444, julia);
+        contaSalarioJulia.depositar(200);
+
+        contaSalarioMario.transferir(100.00, contaSalarioJulia);
+        System.out.println("conta salario de julia depois de receber de mario >>> " + contaSalarioJulia.toString());
+        System.out.println("conta salario de mario depois de enviar de julia >>> "+ contaSalarioMario.toString());
+
+    }
+
+    public void showCadastroPanel() {
+        ArrayList<Conta> contas = new ArrayList<Conta>();
+        JOptionPane.showMessageDialog(null,"Cadastro de contas");
+        int tipo = Integer.parseInt(JOptionPane.showInputDialog(null,"1 - Corrente | 2 - Conta Salário | 3 - poupança"));
+        while (tipo != 0) {
+            String nome = JOptionPane.showInputDialog(null,"Nome do cliete:");
+            String telefone = JOptionPane.showInputDialog(null,"Telefone do cliente:");
+            int numero = Integer.parseInt(JOptionPane.showInputDialog(null,"Numero da conta:"));
+            Cliente cliente = new Cliente(nome, telefone);
+
+            if(tipo == 1){
+                contas.add(new ContaCorrente(numero, cliente));
+
+            } else if (tipo == 2){
+                contas.add(new ContaSalario(numero, cliente));
+            } else if(tipo == 3) {
+                contas.add(new ContaPoupanca(numero, cliente));
+            }
+            tipo = Integer.parseInt(JOptionPane.showInputDialog(null,"1 - Corrente | 2 - Conta Salário | 3 - poupança"));
+        }
+        String outputStr = "";
+        if(contas.size() > 0) {
+            for (Conta conta : contas) {
+                outputStr = outputStr + conta.toString() + "\n";
+            }
+        } else {
+            outputStr = "nada por aq";
+        }
+
+
+        JOptionPane.showMessageDialog(null,outputStr);
     }
 }
