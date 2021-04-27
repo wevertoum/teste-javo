@@ -10,13 +10,18 @@ public class ContaPoupanca extends Conta {
         saldo = saldo - (valor + 0.05);
     }
 
+    @Override
+    public void depositar(double valor) {
+        saldo = saldo + (valor - 0.05);
+    }
+
     public void atualizaSaldo(int percent) {
         saldo = saldo + (saldo * percent / 100);
     }
 
     @Override
     public void transferir(double valor, Conta destino) {
-        sacar(valor);
+        this.sacar(valor);
         destino.depositar(valor);
     }
 }
