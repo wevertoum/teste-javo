@@ -13,12 +13,12 @@ public class ContaCorrente extends Conta {
 
     @Override
     public void depositar(double valor) {
-        saldo = saldo + valor;
+        saldo = saldo + (valor - 0.05);
     }
 
     @Override
     public void transferir(double valor, Conta destino) {
-        sacar(valor);
+        this.sacar(valor);
         destino.depositar(valor);
     }
 }
