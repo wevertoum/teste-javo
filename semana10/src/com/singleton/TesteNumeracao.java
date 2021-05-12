@@ -1,4 +1,4 @@
-package com.semana10;
+package com.singleton;
 
 public class TesteNumeracao {
     public static void main(String[] args) {
